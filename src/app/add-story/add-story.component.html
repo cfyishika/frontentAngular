@@ -1,0 +1,17 @@
+<form [formGroup]="myForm" class="my-3" (ngSubmit)="addStory(myForm.value)">
+    <label>Title:
+        <input type="text" formControlName="title" ></label><br>
+    <label>Description:
+        <textarea name="body_text"  rows="4" cols="50" placeholder="Enter the description here" formControlName="body_text"></textarea></label><br>
+    <label>Published Date:
+        <input type="date" formControlName="pub_date"  ></label><br>
+    <select formControlName="source_name" >-- Select source ---
+        <option *ngFor="let source of sources" [ngValue]="source">{{source.name}}</option>
+    </select><br>
+    <label>URL
+        <input type="url" formControlName="url" ></label><br>
+    <select formControlName="tagged_company" multiple>-- Select companies ----
+        <option *ngFor="let company of companies" [ngValue]="company">{{company.company_name}}</option>
+    </select><br>
+    <button type="submit">Add Story</button>
+</form>

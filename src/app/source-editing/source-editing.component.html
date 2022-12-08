@@ -1,0 +1,7 @@
+<form [formGroup]="myForm" (ngSubmit)="editSource(particularSource.id,particularSource)" class="my-3">
+    <label>Name:
+        <input type="text" formControlName="name" [(ngModel)]="particularSource.name"></label><br>
+    <label>URL
+        <input type="url" formControlName="url" [(ngModel)]="particularSource.url"></label><br>
+    <button type="submit">Edit Source</button>
+</form>

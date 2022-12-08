@@ -1,0 +1,13 @@
+<form [formGroup]="myForm" class="my-3" (ngSubmit)="addSource(myForm.value)">
+    <label>Name:
+        <input type="text" formControlName="name" ></label><br>
+    <label>URL:
+        <input type="url" formControlName="url" ></label><br>
+    <div *ngIf="rssCheck(myForm.value.url);then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock><div class="alert alert-warning" role="alert">
+        Write correct rss only !!!
+      </div></ng-template>
+    <ng-template #elseBlock><button type="submit">Add Source</button></ng-template>
+</form>
+
+

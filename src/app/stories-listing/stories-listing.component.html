@@ -1,0 +1,26 @@
+Search: 
+<input type="text" [ngModel]="search_text" (ngModelChange)="searching($event)">
+{{search_text}}
+<br>
+<br>
+<ol>
+  <li *ngFor="let story of newdata">
+      <a href="{{story.url}}">title: {{story.title}}</a><br>
+      Description: {{story.body_text}}<br>
+      source-{{story.source}}<br>
+      Published date - {{story.pub_date}}<br>
+      Tagged Companies - 
+      <ul *ngFor="let company of story.tagged_company[0]">
+          <li>{{company}}</li>
+      </ul>
+      <button (click)="onDeleteStory(story.id)">Delete</button>
+      <button (click)="onEditStory(story)"  >Edit</button>
+      <hr>
+  </li>
+</ol>
+<br>
+<br>
+<br>
+<div id="comp-render" *ngIf="display" >
+  <app-story-editing [particularStory]="story_data" ></app-story-editing>
+</div>
