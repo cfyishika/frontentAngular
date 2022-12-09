@@ -1,7 +1,7 @@
-import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Input} from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahead-window';
+
 
 @Component({
   selector: 'app-form-modal',
@@ -9,7 +9,7 @@ import { NgbTypeaheadWindow } from '@ng-bootstrap/ng-bootstrap/typeahead/typeahe
   styleUrls: ['./form-modal.component.css']
 })
 export class FormModalComponent {
-constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder){
+constructor(public activeModal: NgbActiveModal){
   this.createForm();
 }
 @Input() id:number;
@@ -26,9 +26,7 @@ submitForm(formValue:any){
   console.log(formValue.password)
   console.log("form submitted")
 }
-onClick() {
-  console.log("Submit button was clicked!");
-}
+
 // closeModal(){
 // this.activeModal.close('Modal Closed')
 // }

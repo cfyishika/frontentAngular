@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {SourcingService} from '../services/sourcing.service'
 import { SourceEditingComponent } from '../source-editing/source-editing.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddSourceComponent } from '../add-source/add-source.component';
 // import { MdbModalRef, MdbModalService} from 'node_modules/mdb-angular-ui-kit-3.0.1/package/modal';
 @Component({
   selector: 'app-source-listing',
@@ -18,8 +20,19 @@ export class SourceListingComponent {
   // editing_id:number;
   // @ViewChild('sourceEditSelector',{static:false})childComponent:SourceEditingComponent
 
-  constructor(private soucingService: SourcingService){}
-  
+  constructor(private soucingService: SourcingService, private modalService: NgbModal){}
+
+  AddSourceModal(){
+    const modalRef = this.modalService.open(AddSourceComponent);
+    modalRef.componentInstance.id=10
+    modalRef.result.then((result)=>{
+      console.log(result);
+      this.getSources();
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
   getSources(){
     this.soucingService.getsource().subscribe(res=>{
       const data_to_display:any[]=[]

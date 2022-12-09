@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" class="my-3" (ngSubmit)="addStory(myForm.value)">
+<!-- <form [formGroup]="myForm" class="my-3" (ngSubmit)="addStory(myForm.value)">
     <label>Title:
         <input type="text" formControlName="title" ></label><br>
     <label>Description:
@@ -14,4 +14,56 @@
         <option *ngFor="let company of companies" [ngValue]="company">{{company.company_name}}</option>
     </select><br>
     <button type="submit">Add Story</button>
-</form>
+</form> -->
+
+
+<div class="modal-header">
+    <h4 class="modal-title">Modal Title</h4>
+    <button type="button" class="close" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form [formGroup]="myForm" (ngSubmit)="addStory(myForm.value)">
+    <div class="modal-body">
+      <div class="container">
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" 
+            class="form-control"
+            formControlName="title" />
+        </div>
+        <div class="form-group">
+          <label for="body_text">Description:</label>
+          <textarea name="body_text"  rows="4" cols="50" formControlName="body_text" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="pub_date">Published Date:</label>
+            <input type="date" 
+              class="form-control"
+              formControlName="pub_date" />
+          </div>
+        <div class="form-group">
+            <label for="source_name">Source:</label>
+            <select formControlName="source_name" >
+                <option *ngFor="let source of sources" [ngValue]="source">{{source.name}}</option>
+            </select>
+        </div> 
+        <div class="form-group">
+            <label for="url">Story URL:</label>
+            <input type="url" 
+              class="form-control"
+              formControlName="url" />
+          </div>
+        <div class="form-group">
+            <label for="tagged_company">Tagged Companies:</label>
+            <select formControlName="tagged_company" multiple>
+                <option *ngFor="let company of companies" [ngValue]="company">{{company.company_name}}</option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" >
+      <button class="btn btn-outline-success" type="submit" >Add Story</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  </form>

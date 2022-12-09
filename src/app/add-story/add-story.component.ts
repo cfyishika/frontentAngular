@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {SourcingService} from '../services/sourcing.service'
 import {CompaniesService} from '../services/companies.service'
 import { GetDataService } from '../services/get-data.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-add-story',
   templateUrl: './add-story.component.html',
@@ -14,9 +15,10 @@ export class AddStoryComponent implements OnInit{
   sources:any;
   companies:any;
   status:any;
-  constructor(private sourcingService: SourcingService, private companyService: CompaniesService, private apiservive: GetDataService){}
-  ngOnInit(): void{
-    let now=new Date()
+  constructor(private sourcingService: SourcingService, private companyService: CompaniesService, private apiservive: GetDataService,  public activeModal: NgbActiveModal){
+    this.createForm()
+  }
+  public createForm(){
     this.myForm = new FormGroup({
       title: new FormControl(''),
       source_name:new FormControl(''),
@@ -25,6 +27,8 @@ export class AddStoryComponent implements OnInit{
       url: new FormControl(''),
       tagged_company: new FormControl('')
     })
+  }
+  ngOnInit(): void{
   this.companies=this.getCompanies()
   this.sources=this.getSources()
 }
@@ -42,6 +46,7 @@ getCompanies(){
 }
 addStory(new_story:any){
   this.apiservive.addStory(new_story).subscribe(()=>this.status="added successfull");
+  this.activeModal.close(new_story)
   console.log(new_story)
   console.log("strooy added successfullyyy !!!!!!!!!!!!")
 }

@@ -1,4 +1,4 @@
-<form [formGroup]="myForm" class="my-3" (ngSubmit)="addSource(myForm.value)">
+<!-- <form [formGroup]="myForm" class="my-3" (ngSubmit)="addSource(myForm.value)">
     <label>Name:
         <input type="text" formControlName="name" ></label><br>
     <label>URL:
@@ -8,6 +8,34 @@
         Write correct rss only !!!
       </div></ng-template>
     <ng-template #elseBlock><button type="submit">Add Source</button></ng-template>
-</form>
+</form> -->
 
 
+
+<div class="modal-header">
+    <h4 class="modal-title">Modal Title</h4>
+    <button type="button" class="close" aria-label="Close"
+     (click)="activeModal.dismiss('Cross click')">
+    </button>
+  </div>
+  <form [formGroup]="myForm" (ngSubmit)="addSource(myForm.value)">
+    <div class="modal-body">
+      <div class="container">
+        <div class="form-group">
+          <label for="name">Source Name:</label>
+          <input type="text" 
+            class="form-control"
+            formControlName="name" />
+        </div>
+        <div class="form-group">
+          <label for="url">Source URL:</label>
+          <input type="url" class="form-control" formControlName="url" >
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" >
+      <button class="btn btn-outline-success" type="submit" >Add Source</button>
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  </form>
+  

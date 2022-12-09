@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { GetDataService } from  '../services/get-data.service'
-
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AddStoryComponent } from '../add-story/add-story.component';
 @Component({
   selector: 'app-stories-listing',
   templateUrl: './stories-listing.component.html',
@@ -14,7 +15,17 @@ export class StoriesListingComponent {
   display = false;
   search_text:any;
   search_title:string='';
-  constructor(private apiservice: GetDataService){}
+  constructor(private apiservice: GetDataService, private modalService: NgbModal){}
+  AddStoryModal(){
+    const modalRef = this.modalService.open(AddStoryComponent);
+    modalRef.componentInstance.id=10
+    modalRef.result.then((result)=>{
+      console.log(result);
+      this.getStories()
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
   getStories(){
     this.apiservice.getdata().subscribe(res=>{
       const data_to_display:any[]=[]

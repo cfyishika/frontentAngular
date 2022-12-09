@@ -2,7 +2,7 @@ Search:
 <input type="text" [ngModel]="search_text" (ngModelChange)="searchingSources($event)">
 {{search_text}}
 <br><br>
-Add Source: 
+Add Source: <button (click)="AddSourceModal()">Add Source</button>
 <ol>
     <li *ngFor="let source of sources">
     <a href="{{source.url}}">{{source.name}}</a><br>
@@ -11,7 +11,7 @@ Add Source:
     <button (click)="onEditSource(source)" class="btn btn-secondary">Edit</button>
     <a href='fetching/{{source.id}}' type="button" class="btn btn-primary">Fetch</a>
     <!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
-
+    
     </li>
 </ol>
 <br><br><br><br>

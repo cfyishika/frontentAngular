@@ -1,6 +1,8 @@
 Search: 
 <input type="text" [ngModel]="search_text" (ngModelChange)="searching($event)">
 {{search_text}}
+<br><br>
+Add Source: <button (click)="AddStoryModal()">Add Story</button>
 <br>
 <br>
 <ol>
