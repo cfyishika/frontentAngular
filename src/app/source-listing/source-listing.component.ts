@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {SourcingService} from '../services/sourcing.service'
 import { SourceEditingComponent } from '../source-editing/source-editing.component';
 // import { MdbModalRef, MdbModalService} from 'node_modules/mdb-angular-ui-kit-3.0.1/package/modal';
@@ -15,12 +15,11 @@ export class SourceListingComponent {
   display=false;
   search_text:any;
   search_title:string='';
-  // modalRef: MdbModalRef<SourceEditingComponent> | null = null;
+  // editing_id:number;
+  // @ViewChild('sourceEditSelector',{static:false})childComponent:SourceEditingComponent
 
   constructor(private soucingService: SourcingService){}
-  // openModal() {
-  //   this.modalRef = this.modalService.open(SourceEditingComponent)
-  // }
+  
   getSources(){
     this.soucingService.getsource().subscribe(res=>{
       const data_to_display:any[]=[]
@@ -50,6 +49,12 @@ export class SourceListingComponent {
     this.soucingService.deleteSource(id).subscribe(()=>this.status = 'Delete successful');
     console.log("source delete success")
   }
+  // onEditSource(id:number,source:any){
+  //   console.log("source edition performed")
+  //   this.source_data = source
+  //   this.editing_id=id
+  //   this.display = !this.display;
+  // }
   onEditSource(source:any){
     console.log("source edition performed")
     this.source_data = source
@@ -63,4 +68,7 @@ export class SourceListingComponent {
   ngOnInit(){
     this.getSources()
   }
+  // ngAfterViewInit(){
+  //   this.childComponent.getDataFromSource(this.editing_id,this.source_data);
+  // }
 }

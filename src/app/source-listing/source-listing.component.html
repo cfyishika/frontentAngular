@@ -1,10 +1,13 @@
 Search: 
 <input type="text" [ngModel]="search_text" (ngModelChange)="searchingSources($event)">
 {{search_text}}
+<br><br>
+Add Source: 
 <ol>
     <li *ngFor="let source of sources">
     <a href="{{source.url}}">{{source.name}}</a><br>
     <button (click)="onDeleteSource(source.id)" class="btn btn-danger">Delete</button>
+    <!-- <button (click)="onEditSource(source.id,source)" class="btn btn-secondary">Edit</button> -->
     <button (click)="onEditSource(source)" class="btn btn-secondary">Edit</button>
     <a href='fetching/{{source.id}}' type="button" class="btn btn-primary">Fetch</a>
     <!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
@@ -13,6 +16,7 @@ Search:
 </ol>
 <br><br><br><br>
 <div *ngIf="display">
-   <app-source-editing [particularSource]="source_data" ></app-source-editing>
+   <!-- <app-source-editing  #sourceEditSelector></app-source-editing> -->
+   <app-source-editing  [particularSource]="source_data"></app-source-editing>
 </div>
 
