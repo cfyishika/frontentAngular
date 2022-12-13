@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {SourcingService} from '../services/sourcing.service'
 import {CompaniesService} from '../services/companies.service'
@@ -18,6 +18,7 @@ export class AddStoryComponent implements OnInit{
   constructor(private sourcingService: SourcingService, private companyService: CompaniesService, private apiservive: GetDataService,  public activeModal: NgbActiveModal){
     this.createForm()
   }
+  @Input() public story_passed:any;
   public createForm(){
     this.myForm = new FormGroup({
       title: new FormControl(''),
@@ -44,8 +45,18 @@ getCompanies(){
     console.log(this.companies)
   })
 }
-addStory(new_story:any){
-  this.apiservive.addStory(new_story).subscribe(()=>this.status="added successfull");
+addStory(get_story:any,new_story:any){
+  if(get_story==null){
+    console.log("new story added is-- ", new_story)
+    this.apiservive.addStory(new_story).subscribe(()=>this.status="added successfull");
+  }
+  else{
+    console.log(get_story)
+    let id=get_story.id;
+    this.apiservive.updateStory(id,get_story).subscribe(()=>this.status = "update succeddful")
+    console.log("I have to check the edited source", new_story )
+  }
+
   this.activeModal.close(new_story)
   console.log(new_story)
   console.log("strooy added successfullyyy !!!!!!!!!!!!")

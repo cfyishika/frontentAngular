@@ -3,6 +3,8 @@ import {SourcingService} from '../services/sourcing.service'
 import { SourceEditingComponent } from '../source-editing/source-editing.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AddSourceComponent } from '../add-source/add-source.component';
+import { DeleteSourceComponent } from '../delete-source/delete-source.component';
+
 // import { MdbModalRef, MdbModalService} from 'node_modules/mdb-angular-ui-kit-3.0.1/package/modal';
 @Component({
   selector: 'app-source-listing',
@@ -19,12 +21,17 @@ export class SourceListingComponent {
   search_title:string='';
   // editing_id:number;
   // @ViewChild('sourceEditSelector',{static:false})childComponent:SourceEditingComponent
-
+  // public obj:any={
+  //  source_id:-1,
+  //  source_data:null
+  // }
   constructor(private soucingService: SourcingService, private modalService: NgbModal){}
 
   AddSourceModal(){
     const modalRef = this.modalService.open(AddSourceComponent);
-    modalRef.componentInstance.id=10
+    // this.obj['source_id']=-1
+    // this.obj['source_data']=null
+    modalRef.componentInstance.source_passed=null;
     modalRef.result.then((result)=>{
       console.log(result);
       this.getSources();
@@ -32,7 +39,31 @@ export class SourceListingComponent {
       console.log(error);
     })
   }
-
+  EditSourceModal(source:any){
+    const modalRef = this.modalService.open(AddSourceComponent);
+    // this.obj['source_id']=source_id
+    // this.obj['source_data']=source
+    modalRef.componentInstance.source_passed=source;
+    modalRef.result.then((result)=>{
+      console.log(result);
+      this.getSources();
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+  openDeleteModal(id:number){
+    const modalRef = this.modalService.open(DeleteSourceComponent);
+    modalRef.result.then((result)=>{
+      console.log(result);
+      if(result==='delete click'){
+        console.log("hey we have got the error")
+        this.onDeleteSource(id);
+        this.getSources();
+      }
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
   getSources(){
     this.soucingService.getsource().subscribe(res=>{
       const data_to_display:any[]=[]

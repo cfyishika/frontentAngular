@@ -14,6 +14,7 @@ import { SourceEditingComponent } from './source-editing/source-editing.componen
 import { AddSourceComponent } from './add-source/add-source.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormModalComponent } from './form-modal/form-modal.component';
+import { DeleteSourceComponent } from './delete-source/delete-source.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormModalComponent } from './form-modal/form-modal.component';
     SourceEditingComponent,
     AddSourceComponent,
     FormModalComponent,
+    DeleteSourceComponent,
   ],
   imports: [
     BrowserModule,

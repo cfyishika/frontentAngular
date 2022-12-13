@@ -18,7 +18,17 @@ export class StoriesListingComponent {
   constructor(private apiservice: GetDataService, private modalService: NgbModal){}
   AddStoryModal(){
     const modalRef = this.modalService.open(AddStoryComponent);
-    modalRef.componentInstance.id=10
+    modalRef.componentInstance.story_passed=null
+    modalRef.result.then((result)=>{
+      console.log(result);
+      this.getStories()
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+  EditStoryModal(story:any){
+    const modalRef = this.modalService.open(AddStoryComponent);
+    modalRef.componentInstance.story_passed=story
     modalRef.result.then((result)=>{
       console.log(result);
       this.getStories()

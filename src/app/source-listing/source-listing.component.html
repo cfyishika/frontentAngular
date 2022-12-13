@@ -6,10 +6,12 @@ Add Source: <button (click)="AddSourceModal()">Add Source</button>
 <ol>
     <li *ngFor="let source of sources">
     <a href="{{source.url}}">{{source.name}}</a><br>
-    <button (click)="onDeleteSource(source.id)" class="btn btn-danger">Delete</button>
+    <button (click)="onDeleteSource(source.id)" >Delete</button>
     <!-- <button (click)="onEditSource(source.id,source)" class="btn btn-secondary">Edit</button> -->
-    <button (click)="onEditSource(source)" class="btn btn-secondary">Edit</button>
-    <a href='fetching/{{source.id}}' type="button" class="btn btn-primary">Fetch</a>
+    <button (click)="onEditSource(source)">Edit</button>
+    <a href='fetching/{{source.id}}' type="button">Fetch</a>
+    <button (click)="openDeleteModal(source.id)">Delete Modal</button>
+    <button (click)="EditSourceModal(source)">Edit Modal</button>
     <!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
     
     </li>
