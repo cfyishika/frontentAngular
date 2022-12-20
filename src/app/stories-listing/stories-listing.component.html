@@ -5,8 +5,8 @@ Search:
 Add Source: <button (click)="AddStoryModal()">Add Story</button>
 <br>
 <br>
-<ol>
-  <li *ngFor="let story of newdata">
+<ul>
+  <li *ngFor="let story of newdata| paginate: { itemsPerPage: 10, currentPage: p }">
       <a href="{{story.url}}">title: {{story.title}}</a><br>
       Description: {{story.body_text}}<br>
       source-{{story.source}}<br>
@@ -19,7 +19,9 @@ Add Source: <button (click)="AddStoryModal()">Add Story</button>
       <button (click)="EditStoryModal(story)">Edit Modal</button>
       <hr>
   </li>
-</ol>
+</ul>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
 <br>
 <br>
 <br>

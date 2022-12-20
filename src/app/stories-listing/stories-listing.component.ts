@@ -15,7 +15,9 @@ export class StoriesListingComponent {
   display = false;
   search_text:any;
   search_title:string='';
-  constructor(private apiservice: GetDataService, private modalService: NgbModal){}
+  p: number = 1;
+  constructor(private apiservice: GetDataService, private modalService: NgbModal){
+  }
   AddStoryModal(){
     const modalRef = this.modalService.open(AddStoryComponent);
     modalRef.componentInstance.story_passed=null

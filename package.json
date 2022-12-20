@@ -23,6 +23,7 @@
     "abab": "^2.0.6",
     "bootstrap": "^5.2.3",
     "mdbootstrap": "^4.20.0",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"

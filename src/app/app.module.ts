@@ -15,6 +15,7 @@ import { AddSourceComponent } from './add-source/add-source.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormModalComponent } from './form-modal/form-modal.component';
 import { DeleteSourceComponent } from './delete-source/delete-source.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DeleteSourceComponent } from './delete-source/delete-source.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
     NgbModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'XSRF-TOKEN',
