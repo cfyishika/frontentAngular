@@ -14,8 +14,7 @@ myForm:any;
 status:any;
 s1:any;
 s2:any;
-name_check:boolean;
-url_check:boolean;
+
 constructor(private sourcingService: SourcingService, public activeModal: NgbActiveModal, private formBuilder: FormBuilder){
   this.createForm();
   this.sourcingService.refreshNeeded.subscribe(result=>{
@@ -34,10 +33,7 @@ public createForm(){
     url:['',[Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
   })
 }
-get sourceName(){
-  return this.myForm.get('name')
-}
-get m(){
+get sourceControl(){
   return this.myForm.controls;
 }
 addSource(get_source:any,new_source:any){
@@ -47,17 +43,20 @@ addSource(get_source:any,new_source:any){
   if(get_source==null){
     console.log("I have to check the added source", new_source)
     this.sourcingService.addSource(new_source).subscribe(()=>{
-      this.status="source added successfull"
+      this.status="source added successfull";
         });
-    this.activeModal.close("operation performed successfully")
     
   }
   else{
     let id=get_source.id
-    this.sourcingService.updateSource(id,get_source).subscribe(()=>this.status = "source update succeddful")
+    this.sourcingService.updateSource(id,get_source).subscribe(()=>{
+      this.status = "source update succeddful";
+      this.ngOnInit
+  })
     console.log("I have to check the edited source", new_source)
-    this.activeModal.close("operation performed successfully")
+    
   }
+  this.activeModal.close("operation performed successfully")
   // this.sourcingService.addSource(new_source).subscribe(()=>this.status="source added successfull");
   
   // console.log(new_source)
@@ -78,22 +77,6 @@ addSource(get_source:any,new_source:any){
 //   });
 // }
 
-checkValidity(name:any,url:any){
-  
-  if(name === ""){
-    console.log(name)
-    this.name_check=false
-    return false;
-  }
-  else if(url=== ""){
-    console.log(url)
-    this.url_check=false
-    return false;
-  }
-  else{
-    return true;
-  }
-}
 
 ngOnInit(){
   console.log("on init  --- id is ",this.source_passed);

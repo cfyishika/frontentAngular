@@ -51,6 +51,7 @@ export class SourceListingComponent {
     }).catch((error)=>{
       console.log(error);
     })
+    this.getSources()
   }
   openDeleteModal(id:number){
     const modalRef = this.modalService.open(DeleteSourceComponent);

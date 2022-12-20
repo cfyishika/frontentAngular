@@ -7,11 +7,11 @@ import { SourceListingComponent } from './source-listing/source-listing.componen
 import { AddSourceComponent } from './add-source/add-source.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'stories_listing', component: StoriesListingComponent },
-  {path: 'story_adding', component:AddStoryComponent },
+  {path: 'home', component: StoriesListingComponent},
+  // {path: 'stories_listing', component: StoriesListingComponent },
+  // {path: 'story_adding', component:AddStoryComponent },
   {path: 'source_listing',component: SourceListingComponent},
-  {path: 'source_adding',component:AddSourceComponent}
+  // {path: 'source_adding',component:AddSourceComponent}
 ];
 
 @NgModule({
