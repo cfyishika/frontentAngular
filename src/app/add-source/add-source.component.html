@@ -1,17 +1,3 @@
-<!-- <form [formGroup]="myForm" class="my-3" (ngSubmit)="addSource(myForm.value)">
-    <label>Name:
-        <input type="text" formControlName="name" ></label><br>
-    <label>URL:
-        <input type="url" formControlName="url" ></label><br>
-    <div *ngIf="rssCheck(myForm.value.url);then thenBlock else elseBlock"></div>
-    <ng-template #thenBlock><div class="alert alert-warning" role="alert">
-        Write correct rss only !!!
-      </div></ng-template>
-    <ng-template #elseBlock><button type="submit">Add Source</button></ng-template>
-</form> -->
-
-
-
 <div class="modal-header">
     <h4 class="modal-title">Modal Title</h4>
     <button type="button" class="close" aria-label="Close"
@@ -31,12 +17,21 @@
             formControlName="name"
             [(ngModel)]="source_passed.name"/> -->
         </div>
+        <div *ngIf="m.name.touched && m.name.invalid" class="errormsg">
+        <span *ngIf="m.url.errors?.required" >!!Please enter the name</span>
+        <span *ngIf="m.name.errors?.minlength" > Name must be at least 5 characters long.</span>
+        </div>
         <div class="form-group">
           <label for="url">Source URL:</label>
           <div *ngIf="source_passed==null; then addurl else editurl"></div>
-          <ng-template #addurl> <input type="url" class="form-control" formControlName="url" ></ng-template>
-          <ng-template #editurl><input type="url" class="form-control" formControlName="url"  [(ngModel)]="source_passed.url" ></ng-template>
+          <ng-template #addurl> <input type="url" class="form-control" formControlName="url" minlength="5"  ></ng-template>
+          <ng-template #editurl><input type="url" class="form-control" formControlName="url"  [(ngModel)]="source_passed.url" minlength="5"></ng-template>
           <!-- <input type="url" class="form-control" formControlName="url"  [(ngModel)]="source_passed.url" > -->
+        </div>
+        <!-- <span *ngIf="url_check==false" class="errormsg">!!Please enter a valid url</span> -->
+        <div *ngIf="m.url.touched && m.url.invalid" class="errormsg">
+        <div *ngIf="m.url.errors?.required">!!Please provide url</div>
+        <div *ngIf="m.url.errors?.pattern" >Please provide valid url</div>
         </div>
       </div>
     </div>

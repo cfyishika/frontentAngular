@@ -61,7 +61,10 @@ export class StoriesListingComponent {
     })
   }
   onDeleteStory(id:number){
-    this.apiservice.deleteStory(id).subscribe(()=>this.status = 'Delete successful');
+    this.apiservice.deleteStory(id).subscribe(()=>{
+      this.status = 'Delete successful';
+      this.getStories();
+    });
     console.log("delete success")
   }
   onEditStory(story:any){

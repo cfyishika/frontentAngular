@@ -15,8 +15,13 @@ export class AddStoryComponent implements OnInit{
   sources:any;
   companies:any;
   status:any;
+  s1:any;
+  s2:any;
   constructor(private sourcingService: SourcingService, private companyService: CompaniesService, private apiservive: GetDataService,  public activeModal: NgbActiveModal){
-    this.createForm()
+    this.createForm();
+    this.apiservive.refreshNeeded.subscribe(result=>{
+      this.addStory(this.s1,this.s2);
+    })
   }
   @Input() public story_passed:any;
   public createForm(){
@@ -46,6 +51,8 @@ getCompanies(){
   })
 }
 addStory(get_story:any,new_story:any){
+  this.s1=get_story;
+  this.s2=new_story;
   if(get_story==null){
     console.log("new story added is-- ", new_story)
     this.apiservive.addStory(new_story).subscribe(()=>this.status="added successfull");

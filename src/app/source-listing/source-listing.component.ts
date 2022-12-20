@@ -19,6 +19,7 @@ export class SourceListingComponent {
   display=false;
   search_text:any;
   search_title:string='';
+  total_sources:any;
   // editing_id:number;
   // @ViewChild('sourceEditSelector',{static:false})childComponent:SourceEditingComponent
   // public obj:any={
@@ -58,7 +59,6 @@ export class SourceListingComponent {
       if(result==='delete click'){
         console.log("hey we have got the error")
         this.onDeleteSource(id);
-        this.getSources();
       }
     }).catch((error)=>{
       console.log(error);
@@ -76,9 +76,11 @@ export class SourceListingComponent {
       });
       if(this.search_title === ''){
         this.sources=res
+        this.total_sources=null;
       }
       else{
         this.sources=data_to_display;
+        this.total_sources=data_to_display.length
       }
       console.log("data to be displayed here is ")
       console.log(data_to_display)
@@ -90,7 +92,11 @@ export class SourceListingComponent {
   }
 
   onDeleteSource(id:number){
-    this.soucingService.deleteSource(id).subscribe(()=>this.status = 'Delete successful');
+    this.soucingService.deleteSource(id).subscribe(()=>{
+    this.status = 'Delete successful';
+    this.getSources();
+  });
+    this.getSources();
     console.log("source delete success")
   }
   // onEditSource(id:number,source:any){
