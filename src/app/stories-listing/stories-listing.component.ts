@@ -77,7 +77,18 @@ export class StoriesListingComponent {
   searching(value:string){
     console.log(value)
     this.search_title=value;
-    this.getStories()
+    this.apiservice.getdata().subscribe(res=>{
+      const data_to_display:any[]=[]
+      res.forEach((element:any)=>{
+        let title_here=element.title
+        let url=element.url
+        let body_text=element.body_text
+        if(title_here.includes(this.search_title) || url.includes(this.search_title) || body_text.includes(this.search_title)){
+          data_to_display.push(element)
+        }
+      })
+      this.newdata=data_to_display;
+    })
   }
   ngOnInit(){
     this.getStories()

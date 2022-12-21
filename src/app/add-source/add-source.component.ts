@@ -2,7 +2,6 @@ import { Component, Input, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import {SourcingService} from '../services/sourcing.service'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-// import { SourceListingComponent } from '../source-listing/source-listing.component';
 @Component({
   selector: 'app-add-source',
   templateUrl: './add-source.component.html',
@@ -24,10 +23,7 @@ constructor(private sourcingService: SourcingService, public activeModal: NgbAct
 
 @Input() public source_passed:any;
 public createForm(){
-  // this.myForm = new FormGroup({
-  //   name:new FormControl('', Validators.minLength(5)),
-  //   url:new FormControl('',[Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')])
-  // })
+ 
   this.myForm=this.formBuilder.group({
     name:['', [Validators.required, Validators.minLength(5)]],
     url:['',[Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
@@ -57,26 +53,7 @@ addSource(get_source:any,new_source:any){
     
   }
   this.activeModal.close("operation performed successfully")
-  // this.sourcingService.addSource(new_source).subscribe(()=>this.status="source added successfull");
-  
-  // console.log(new_source)
-  // console.log("showing the id we have passed----",this.source_passed)
-  // alert("Source added successfully")
-  // console.log("source added successfullyyy !!!!!!!!!!!!")
 }
-
-// rssCheck(url_checked:any){
-//   let arr=url_checked.split('.');
-//   arr.forEach((element:any) => {
-//     if(element=='cms' || element=='xml'){
-//       return true;
-//     }
-//     else{
-//       return false;
-//     } 
-//   });
-// }
-
 
 ngOnInit(){
   console.log("on init  --- id is ",this.source_passed);

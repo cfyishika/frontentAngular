@@ -22,9 +22,3 @@ Add Source: <button (click)="AddStoryModal()">Add Story</button>
 </ul>
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
 
-<br>
-<br>
-<br>
-<div id="comp-render" *ngIf="display" >
-  <app-story-editing [particularStory]="story_data" ></app-story-editing>
-</div>

@@ -11,13 +11,8 @@ Add Source: <button (click)="AddSourceModal()">Add Source</button>
     <a href='fetching/{{source.id}}' type="button" class="fetchBtn">Fetch</a>
     <button (click)="openDeleteModal(source.id)" class="mx-3">Delete</button>
     <button (click)="EditSourceModal(source)">Edit</button>
-    <!-- <button class="btn btn-primary" (click)="openModal()">Open modal</button> -->
+    
     
     </li>
 </ol>
-<br><br><br><br>
-<div *ngIf="display">
-   <!-- <app-source-editing  #sourceEditSelector></app-source-editing> -->
-   <app-source-editing  [particularSource]="source_data"></app-source-editing>
-</div>
 
